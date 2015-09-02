@@ -12,7 +12,7 @@ npm install
 Then run `grunt build` to build the project.
 
 ## Testing
-To test the library you'll need to use Jasmine. First install Jasmine
+To test the library you'll need to use Jasmine. First install Jasmine:
 ```
 git clone https://github.com/pivotal/jasmine.git
 mkdir HTMLString/jasmine
