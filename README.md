@@ -25,3 +25,8 @@ Then open `HTMLString/SpecRunner.html` in a browser to run the tests.
 
 ## Documentation
 Full documentation is available at http://getcontenttools.com/api/html-string
+
+## Browser support
+- Chrome
+- Firefox
+- IE9+
