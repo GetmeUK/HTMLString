@@ -1,5 +1,5 @@
 quotes = {
-    Gates: '''<b><q data-example>We all</q></b><q data-example> need people who will give us feedback. That's how we improve.</q>'''
+    Gates: '''<!-- --><b><!-- Comments are ignored --><q data-example>We all</q></b><q data-example> need people who will give us feedback. That's how we improve.</q>'''
     Kernighan: ''' <q>
         Everyone knows that debugging is twice as hard as writing a program in
         the first place. So if you're as clever as you can be when you write

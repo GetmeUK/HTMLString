@@ -906,7 +906,7 @@ class _Parser
         html = html.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
 
         # Remove any comments
-        html = html.replace(/<!--[\s\S]-->/g, '')
+        html = html.replace(/<!--[\s\S]*?-->/g, '')
 
         # Replace multiple spaces with a single space
         if not @_preserveWhitespace
