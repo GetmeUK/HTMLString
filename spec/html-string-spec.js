@@ -2,7 +2,7 @@
   var quotes;
 
   quotes = {
-    Gates: '<!-- --><b><!-- Comments are ignored --><q data-example>We all</q></b><q data-example> need people who will give us feedback. That\'s how we improve.</q>',
+    Gates: '<!-- --><b><!-- Comments are ignored --><q data-example>We all</q></b><q data-example> need people who will give us feedback. That\'s how we improve. <a href="#"><img src="bill-gates.jpg"></a></q>',
     Kernighan: ' <q>\n    Everyone knows that debugging is twice as hard as writing a program in\n    the first place. So if you\'re as clever as you can be when you write\n    it, <span class="question">how will you ever <b>debug</b> it?</span>\n</q> ',
     Ritchie: 'I can\'t recall any difficulty in making the C language definition completely\nopen - any discussion on the matter tended to mention languages whose\ninventors tried to keep tight control, and consequent ill fate.',
     Turing: '<q id="turings-quote">Machines take me by <br> <span class="suprised">surprise</span> with <i>great&nbsp;frequency.</i></q>',
@@ -167,7 +167,7 @@
       var string;
       string = new HTMLString.String(quotes.Gates);
       string.optimize();
-      return expect(string.html()).toBe('<q data-example><b>We all</b> need people who will give us feedback. That\'s how we improve.</q>');
+      return expect(string.html()).toBe('<q data-example><b>We all</b> need people who will give us feedback. That\'s how we improve. <a href="#"><img src="bill-gates.jpg"></a></q>');
     });
   });
 

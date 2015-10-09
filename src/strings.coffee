@@ -197,11 +197,16 @@ class HTMLString.String
             # Open tags
             for tag in c._tags
                 if openHeads.indexOf(tag.head()) == -1
-                    head = tag.head()
-                    html += head
                     if not tag.selfClosing()
+                        head = tag.head()
+                        html += head
                         openTags.push(tag)
                         openHeads.push(head)
+
+            # Add self closing tags last
+            for tag in c._tags
+                if tag.selfClosing()
+                    html += tag.head()
 
             html += c.c()
 

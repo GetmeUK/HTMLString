@@ -1,5 +1,5 @@
 quotes = {
-    Gates: '''<!-- --><b><!-- Comments are ignored --><q data-example>We all</q></b><q data-example> need people who will give us feedback. That's how we improve.</q>'''
+    Gates: '''<!-- --><b><!-- Comments are ignored --><q data-example>We all</q></b><q data-example> need people who will give us feedback. That's how we improve. <a href="#"><img src="bill-gates.jpg"></a></q>'''
     Kernighan: ''' <q>
         Everyone knows that debugging is twice as hard as writing a program in
         the first place. So if you're as clever as you can be when you write
@@ -204,7 +204,7 @@ describe 'HTMLString.String.optimize()', () ->
         string = new HTMLString.String(quotes.Gates)
         string.optimize()
 
-        expect(string.html()).toBe '''<q data-example><b>We all</b> need people who will give us feedback. That's how we improve.</q>'''
+        expect(string.html()).toBe '''<q data-example><b>We all</b> need people who will give us feedback. That's how we improve. <a href="#"><img src="bill-gates.jpg"></a></q>'''
 
 
 describe 'HTMLString.String.slice()', () ->
