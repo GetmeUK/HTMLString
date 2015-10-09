@@ -203,10 +203,10 @@ class HTMLString.String
                         openTags.push(tag)
                         openHeads.push(head)
 
-            # Add self closing tags last
-            for tag in c._tags
-                if tag.selfClosing()
-                    html += tag.head()
+            # If the character is a self-closing tag add it to the HTML after
+            # all other tags.
+            if c._tags.length > 0 and c._tags[0].selfClosing()
+                html += c._tags[0].head()
 
             html += c.c()
 
