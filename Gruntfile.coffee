@@ -43,6 +43,13 @@ module.exports = (grunt) ->
         clean:
             build: ['src/tmp']
 
+        jasmine:
+            fsm:
+                src: ['build/html-string.js']
+                options:
+                    specs: 'spec/html-string-spec.js'
+                    helpers: 'spec/spec-helper.js'
+
         watch:
             build:
                 files: ['src/*.coffee']
@@ -57,6 +64,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-clean'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-concat'
+    grunt.loadNpmTasks 'grunt-contrib-jasmine'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-watch'
 
