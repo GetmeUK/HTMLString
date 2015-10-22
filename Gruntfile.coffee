@@ -44,7 +44,7 @@ module.exports = (grunt) ->
             build: ['src/tmp']
 
         jasmine:
-            fsm:
+            build:
                 src: ['build/html-string.js']
                 options:
                     specs: 'spec/html-string-spec.js'
