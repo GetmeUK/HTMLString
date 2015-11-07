@@ -224,28 +224,7 @@ class HTMLString.String
 
         # Find text
         if typeof substring == 'string'
-
-            # Check the this string contains the specified string before
-            # perform a full search.
-            if not @contains(substring)
-                return -1
-
-            # Find text
-            substring = substring.split('')
-            while from <= (@length() - substring.length)
-                found = true
-                skip = 0
-                for c, i in substring
-                    if @characters[i + from].isTag()
-                        skip += 1
-                    if c != @characters[skip + i + from].c()
-                        found = false
-                        break
-                if found
-                    return from
-                from++
-
-            return -1
+            return @text().indexOf(substring, from)
 
         # Find html string
         while from <= (@length() - substring.length())
