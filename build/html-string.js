@@ -1010,7 +1010,7 @@
         tag = this.tags.pop();
         if (this.string.length()) {
           character = this.string.characters[this.string.length() - 1];
-          if (!character.isTag() && character.isWhitespace()) {
+          if (!character.isTag() && !character.isEntity() && character.isWhitespace()) {
             character.removeTags(tag);
           }
         }

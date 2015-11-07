@@ -852,7 +852,9 @@ class _Parser
             # Push whitespace at the end of a tag out
             if @string.length()
                 character = @string.characters[@string.length() - 1]
-                if not character.isTag() and character.isWhitespace()
+                if not character.isTag() and
+                        not character.isEntity() and
+                        character.isWhitespace()
                     character.removeTags(tag)
 
             break if tag.name() == @tagName.toLowerCase()
