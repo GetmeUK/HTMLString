@@ -15,6 +15,9 @@ inventors tried to keep tight control, and consequent ill fate.'''
     Wozniak: '''
 all the best people in life seem to like LINUX.
     '''
+    WozniakNamespaced: '''
+all the best people in life seem to like <ns:tag>LINUX</ns:tag>.
+    '''
     WozniakWhitespace: '''
 all    the best people in life seem to like LINUX.
     '''
@@ -33,6 +36,10 @@ describe 'HTMLString.String()', () ->
     it 'should parse and render a string (HTML)', () ->
         string = new HTMLString.String(quotes.Turing)
         expect(string.html()).toBe quotes.Turing
+
+        # Check names spaced tags are supported
+        string = new HTMLString.String(quotes.WozniakNamespaced)
+        expect(string.html()).toBe quotes.WozniakNamespaced
 
 
 describe 'HTMLString.String.isWhitespace()', () ->

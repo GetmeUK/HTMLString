@@ -605,8 +605,9 @@ class HTMLString.String
 
 # Define character sets
 ALPHA_CHARS = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz-_$'.split('')
-ALPHA_NUMERIC_CHARS = ALPHA_CHARS.concat '1234567890'.split('')
-ENTITY_CHARS = ALPHA_NUMERIC_CHARS.concat ['#']
+ALPHA_NUMERIC_CHARS = ALPHA_CHARS.concat('1234567890'.split(''))
+ENTITY_CHARS = ALPHA_NUMERIC_CHARS.concat(['#'])
+TAG_NAME_CHARS = ALPHA_NUMERIC_CHARS.concat([':'])
 
 # Define the parser states
 CHAR_OR_ENTITY_OR_TAG = 1
@@ -673,7 +674,7 @@ class _Parser
             @_back()
 
         # Tag name opening
-        @fsm.addTransitions ALPHA_NUMERIC_CHARS, TAG_NAME_OPENING, null, (c) ->
+        @fsm.addTransitions TAG_NAME_CHARS, TAG_NAME_OPENING, null, (c) ->
             @tagName += c
 
         @fsm.addTransitions [' ', '\n'], TAG_NAME_OPENING, ATTR_OR_TAG_END
@@ -698,7 +699,7 @@ class _Parser
             @_back()
 
         # Tag name closing
-        @fsm.addTransitions ALPHA_NUMERIC_CHARS, TAG_NAME_CLOSING, null, (c) ->
+        @fsm.addTransitions TAG_NAME_CHARS, TAG_NAME_CLOSING, null, (c) ->
             @tagName += c
 
         @fsm.addTransitions [' ', '\n'], TAG_NAME_CLOSING, TAG_NAME_MUST_CLOSE
