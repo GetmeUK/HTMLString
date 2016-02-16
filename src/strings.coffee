@@ -606,6 +606,7 @@ class HTMLString.String
 # Define character sets
 ALPHA_CHARS = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz-_$'.split('')
 ALPHA_NUMERIC_CHARS = ALPHA_CHARS.concat('1234567890'.split(''))
+ATTR_NAME_CHARS = ALPHA_NUMERIC_CHARS.concat([':'])
 ENTITY_CHARS = ALPHA_NUMERIC_CHARS.concat(['#'])
 TAG_NAME_CHARS = ALPHA_NUMERIC_CHARS.concat([':'])
 
@@ -711,7 +712,7 @@ class _Parser
             @_popTag()
 
         # Attribute name
-        @fsm.addTransitions ALPHA_NUMERIC_CHARS, ATTR_NAME, null, (c) ->
+        @fsm.addTransitions ATTR_NAME_CHARS, ATTR_NAME, null, (c) ->
             @attributeName += c
 
         @fsm.addTransitions [' ', '\n'], ATTR_NAME, ATTR_NAME_FIND_VALUE

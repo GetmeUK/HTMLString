@@ -7,7 +7,7 @@
     Ritchie: 'I can\'t recall any difficulty in making the C language definition completely\nopen - any discussion on the matter tended to mention languages whose\ninventors tried to keep tight control, and consequent ill fate.',
     Turing: '<q id="turings-quote">Machines take me by <br> <span class="suprised">surprise</span> with <i>great&nbsp;frequency.</i></q>',
     Wozniak: 'all the best people in life seem to like LINUX.',
-    WozniakNamespaced: 'all the best people in life seem to like <ns:tag>LINUX</ns:tag>.',
+    WozniakNamespaced: 'all the best people in life seem to like <ns:tag ns:attr="foo">LINUX</ns:tag>.',
     WozniakWhitespace: 'all    the best people in life seem to like LINUX.'
   };
 
@@ -27,7 +27,8 @@
       string = new HTMLString.String(quotes.Turing);
       expect(string.html()).toBe(quotes.Turing);
       string = new HTMLString.String(quotes.WozniakNamespaced);
-      return expect(string.html()).toBe(quotes.WozniakNamespaced);
+      expect(string.html()).toBe(quotes.WozniakNamespaced);
+      return console.log(string.html());
     });
   });
 
