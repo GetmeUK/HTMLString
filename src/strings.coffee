@@ -842,7 +842,7 @@ class _Parser
         # Reset the tag buffers
         @tagName = ''
         @selfClosed = false
-        @attributes = []
+        @attributes = {}
 
     _popTag: () ->
         # Pop a tag from the stack applied to characters
