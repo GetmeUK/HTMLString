@@ -1,0 +1,32 @@
+{
+  "name": "HTMLString",
+  "description": "An HTML parser written in JavaScript that's probably not what you're looking for.",
+  "main": "build/html-string.js",
+  "authors": [
+    {
+      "name": "Anthony Blackshaw",
+      "email": "ant@getme.co.uk",
+      "url": "https://github.com/anthonyjb"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "html",
+    "parser"
+  ],
+  "homepage": "http://getcontenttools.com/api/html-string",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:GetmeUK/HTMLString.git"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
