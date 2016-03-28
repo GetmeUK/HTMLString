@@ -9,7 +9,7 @@
 **Using bower**
 
 ```
-bower install --save FSM
+bower install --save HTMLString
 ```
 
 ## Building
