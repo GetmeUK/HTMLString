@@ -4,6 +4,14 @@
 
 > An HTML parser written in JavaScript that's probably not what you're looking for.
 
+## Install
+
+**Using bower**
+
+```
+bower install --save FSM
+```
+
 ## Building
 To build the library you'll need to use Grunt. First install the required node modules ([grunt-cli](http://gruntjs.com/getting-started) must be installed):
 ```
