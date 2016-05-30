@@ -12,6 +12,12 @@
 bower install --save HTMLString
 ```
 
+**Using npm**
+
+```
+npm install --save HTMLString
+```
+
 ## Building
 To build the library you'll need to use Grunt. First install the required node modules ([grunt-cli](http://gruntjs.com/getting-started) must be installed):
 ```
@@ -34,7 +40,7 @@ unzip jasmine-standalone-2.0.3.zip
 
 Then open `HTMLString/SpecRunner.html` in a browser to run the tests.
 
-Alternatively you can use `grunt jasmine` to run the tests from the command line. 
+Alternatively you can use `grunt jasmine` to run the tests from the command line.
 
 ## Documentation
 Full documentation is available at http://getcontenttools.com/api/html-string
