@@ -1,6 +1,11 @@
 {
   "name": "HTMLString",
-  "version": "1.0.0",
+  "description": "An HTML parser written in JavaScript that's probably not what you're looking for.",
+  "version": "1.0.1",
+  "keywords": [
+    "html",
+    "parser"
+  ],
   "author": {
     "name": "Anthony Blackshaw",
     "email": "ant@getme.co.uk",
