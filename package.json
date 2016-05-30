@@ -1,7 +1,7 @@
 {
   "name": "HTMLString",
   "description": "An HTML parser written in JavaScript that's probably not what you're looking for.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "html",
     "parser"
@@ -11,6 +11,7 @@
     "email": "ant@getme.co.uk",
     "url": "https://github.com/anthonyjb"
   },
+  "main": "build/html-string.js",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-clean": "^0.6.0",
