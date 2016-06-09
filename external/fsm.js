@@ -1,5 +1,7 @@
 (function() {
-  window.FSM = {};
+  var FSM, exports;
+
+  FSM = {};
 
   FSM.Machine = (function() {
     function Machine(context) {
@@ -80,5 +82,13 @@
     return Machine;
 
   })();
+
+  if (typeof window !== 'undefined') {
+    window.FSM = FSM;
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    exports = module.exports = FSM;
+  }
 
 }).call(this);
