@@ -49,6 +49,13 @@ class HTMLString.Character
         # Add tag(s) to the character
         for tag in tags
 
+            # HACK: Fix for IE edge (see issue:
+            # https://github.com/GetmeUK/ContentTools/issues/258#issuecomment-228931486
+            #
+            # ~ Anthony Blackshaw <ant@getme.co.uk>, 28th June 2016
+            if Array.isArray(tag)
+                continue;
+
             # Any self closing tag has to be inserted as the first tag
             if tag.selfClosing()
                 # You can't add a self closing tag to a character that is a tag

@@ -1,7 +1,7 @@
 {
   "name": "HTMLString",
   "description": "An HTML parser written in JavaScript that's probably not what you're looking for.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "html",
     "parser"
@@ -27,5 +27,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/GetmeUK/HTMLString.git"
-  }
+  },
+  "license": "MIT"
 }
