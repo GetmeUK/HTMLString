@@ -421,7 +421,7 @@ class HTMLString.String
             if limit > 0 and count > limit
                 break
             index = @indexOf(separator, lastIndex)
-            if index == -1 or index == (@length() - 1)
+            if index == -1
                 break
             indexes.push(index)
             lastIndex = index + 1
@@ -431,12 +431,16 @@ class HTMLString.String
         # Build a list of sub-strings based on the split indexes
         substrings = []
         for i in [0..(indexes.length - 2)]
-            substrings.push(@slice(indexes[i], indexes[i + 1]))
+            start = indexes[i]
+            if i > 0
+                start += 1
+            end = indexes[i + 1]
+            substrings.push(@slice(start, end))
 
         return substrings
 
     startsWith: (substring) ->
-        # Return true if the sub=string starts with the specified string
+        # Return true if the string starts with the specified substring
 
         # Compare to text
         if typeof substring == 'string'
@@ -588,17 +592,24 @@ class HTMLString.String
 
     # Class methods
 
+    @decode: (string) ->
+        # Decode entities within the specified string
+        textarea = document.createElement('textarea')
+        textarea.innerHTML = string
+        return textarea.textContent
+
     @encode: (string) ->
         # Encode entities within the specified string
         textarea = document.createElement('textarea')
         textarea.textContent = string
         return textarea.innerHTML
 
-    @decode: (string) ->
-        # Decode entities within the specified string
-        textarea = document.createElement('textarea')
-        textarea.innerHTML = string
-        return textarea.textContent
+    @join: (separator, strings) ->
+        # Join a list of strings together
+        joined = strings.shift()
+        for s in strings
+            joined = joined.concat(separator, s)
+        return joined
 
 
 # Constants

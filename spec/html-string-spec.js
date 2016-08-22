@@ -187,6 +187,11 @@
   describe('HTMLString.String.split()', function() {
     return it('should split a string by the separator and return a list of sub-strings', function() {
       var string, substrings;
+      string = new HTMLString.String(' ', true);
+      substrings = string.split(' ');
+      expect(substrings.length).toBe(2);
+      expect(substrings[0].length()).toBe(0);
+      expect(substrings[1].length()).toBe(0);
       string = new HTMLString.String(quotes.Kernighan).trim();
       substrings = string.split('a');
       expect(substrings.length).toBe(11);

@@ -1,7 +1,7 @@
 {
   "name": "HTMLString",
   "description": "An HTML parser written in JavaScript that's probably not what you're looking for.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "keywords": [
     "html",
     "parser"
