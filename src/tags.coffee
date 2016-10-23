@@ -82,7 +82,11 @@ class HTMLString.Tag
         if @_attributes[name] == undefined
             return
 
+        # Remove the attribute
         delete @_attributes[name]
+
+        # Clear the head cache
+        @_head = null
 
     copy: () ->
         # Return a copy of the tag
