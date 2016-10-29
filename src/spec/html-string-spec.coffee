@@ -21,6 +21,9 @@ all the best people in life seem to like <ns:tag ns:attr="foo">LINUX</ns:tag>.
     WozniakWhitespace: '''
 all    the best people in life seem to like LINUX.
     '''
+    AmbiguousAmpersand: '''
+&amp; &<a href="/foo?bar=1&zee=2&amp;omm=3&end">amp</a> &foo && &&amp; &end
+    '''
 }
 
 describe 'HTMLString.String()', () ->
@@ -40,6 +43,10 @@ describe 'HTMLString.String()', () ->
         # Check names spaced tags are supported
         string = new HTMLString.String(quotes.WozniakNamespaced)
         expect(string.html()).toBe quotes.WozniakNamespaced
+
+    it 'should parse and render a string (HTML with ambiguous ampersands)', () ->
+        string = new HTMLString.String(quotes.AmbiguousAmpersand)
+        expect(string.html()).toBe quotes.AmbiguousAmpersand
 
         console.log string.html()
 

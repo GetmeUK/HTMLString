@@ -659,6 +659,7 @@ class _Parser
 
         @fsm.addTransition '<', CHAR_OR_ENTITY_OR_TAG, OPENNING_OR_CLOSING_TAG
         @fsm.addTransition '&', CHAR_OR_ENTITY_OR_TAG, ENTITY
+        @fsm.addTransition 'END', CHAR_OR_ENTITY_OR_TAG, null
 
         # Entity
         @fsm.addTransitions ENTITY_CHARS, ENTITY, null, (c) ->
@@ -666,6 +667,19 @@ class _Parser
 
         @fsm.addTransition ';', ENTITY, CHAR_OR_ENTITY_OR_TAG, () ->
             @_pushChar("&#{ @entity };")
+            @entity = ''
+
+        @fsm.addTransitionAny ENTITY, CHAR_OR_ENTITY_OR_TAG, (c) ->
+            @_pushChar('&')
+            for c in @entity.split('')
+                @_pushChar(c)
+            @entity = ''
+            @_back()
+
+        @fsm.addTransition 'END', ENTITY, null, () ->
+            @_pushChar('&')
+            for c in @entity.split('')
+                @_pushChar(c)
             @entity = ''
 
         # Opening or closing Tag
@@ -779,7 +793,7 @@ class _Parser
         @fsm.addTransitions ENTITY_CHARS, ATTR_ENTITY_NO_DELIM, null, (c) ->
             @entity += c
 
-        @fsm.addTransitions ENTITY_CHARS, ATTR_ENTITY_SINGLE_DELIM, (c) ->
+        @fsm.addTransitions ENTITY_CHARS, ATTR_ENTITY_SINGLE_DELIM, null, (c) ->
             @entity += c
 
         @fsm.addTransitions ENTITY_CHARS, ATTR_ENTITY_DOUBLE_DELIM, null, (c) ->
@@ -796,6 +810,21 @@ class _Parser
         @fsm.addTransition ';', ATTR_ENTITY_DOUBLE_DELIM, ATTR_VALUE_DOUBLE_DELIM, () ->
             @attributeValue += "&#{ @entity };"
             @entity = ''
+
+        @fsm.addTransitionAny ATTR_ENTITY_NO_DELIM, ATTR_VALUE_NO_DELIM, (c) ->
+             @attributeValue += '&' + @entity
+             @entity = ''
+             @_back()
+
+        @fsm.addTransitionAny ATTR_ENTITY_SINGLE_DELIM, ATTR_VALUE_SINGLE_DELIM, (c) ->
+             @attributeValue += '&' + @entity
+             @entity = ''
+             @_back()
+
+        @fsm.addTransitionAny ATTR_ENTITY_DOUBLE_DELIM, ATTR_VALUE_DOUBLE_DELIM, (c) ->
+             @attributeValue += '&' + @entity
+             @entity = ''
+             @_back()
 
     # Parsing methods
 
@@ -895,6 +924,8 @@ class _Parser
                 throw new Error("Error at char #{@head} >> #{error}")
 
             @head++
+
+        @fsm.process('END')
 
         return @string
 

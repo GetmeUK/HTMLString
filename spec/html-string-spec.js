@@ -8,7 +8,8 @@
     Turing: '<q id="turings-quote">Machines take me by <br> <span class="suprised">surprise</span> with <i>great&nbsp;frequency.</i></q>',
     Wozniak: 'all the best people in life seem to like LINUX.',
     WozniakNamespaced: 'all the best people in life seem to like <ns:tag ns:attr="foo">LINUX</ns:tag>.',
-    WozniakWhitespace: 'all    the best people in life seem to like LINUX.'
+    WozniakWhitespace: 'all    the best people in life seem to like LINUX.',
+    AmbiguousAmpersand: '&amp; &<a href="/foo?bar=1&zee=2&amp;omm=3&end">amp</a> &foo && &&amp; &end'
   };
 
   describe('HTMLString.String()', function() {
@@ -22,12 +23,17 @@
       string = new HTMLString.String(quotes.WozniakWhitespace, true);
       return expect(string.text()).toBe(quotes.WozniakWhitespace);
     });
-    return it('should parse and render a string (HTML)', function() {
+    it('should parse and render a string (HTML)', function() {
       var string;
       string = new HTMLString.String(quotes.Turing);
       expect(string.html()).toBe(quotes.Turing);
       string = new HTMLString.String(quotes.WozniakNamespaced);
-      expect(string.html()).toBe(quotes.WozniakNamespaced);
+      return expect(string.html()).toBe(quotes.WozniakNamespaced);
+    });
+    return it('should parse and render a string (HTML with ambiguous ampersands)', function() {
+      var string;
+      string = new HTMLString.String(quotes.AmbiguousAmpersand);
+      expect(string.html()).toBe(quotes.AmbiguousAmpersand);
       return console.log(string.html());
     });
   });

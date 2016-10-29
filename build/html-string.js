@@ -875,11 +875,33 @@
       });
       this.fsm.addTransition('<', CHAR_OR_ENTITY_OR_TAG, OPENNING_OR_CLOSING_TAG);
       this.fsm.addTransition('&', CHAR_OR_ENTITY_OR_TAG, ENTITY);
+      this.fsm.addTransition('END', CHAR_OR_ENTITY_OR_TAG, null);
       this.fsm.addTransitions(ENTITY_CHARS, ENTITY, null, function(c) {
         return this.entity += c;
       });
       this.fsm.addTransition(';', ENTITY, CHAR_OR_ENTITY_OR_TAG, function() {
         this._pushChar("&" + this.entity + ";");
+        return this.entity = '';
+      });
+      this.fsm.addTransitionAny(ENTITY, CHAR_OR_ENTITY_OR_TAG, function(c) {
+        var _i, _len, _ref;
+        this._pushChar('&');
+        _ref = this.entity.split('');
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          c = _ref[_i];
+          this._pushChar(c);
+        }
+        this.entity = '';
+        return this._back();
+      });
+      this.fsm.addTransition('END', ENTITY, null, function() {
+        var c, _i, _len, _ref;
+        this._pushChar('&');
+        _ref = this.entity.split('');
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          c = _ref[_i];
+          this._pushChar(c);
+        }
         return this.entity = '';
       });
       this.fsm.addTransitions([' ', '\n'], OPENNING_OR_CLOSING_TAG);
@@ -979,7 +1001,7 @@
       this.fsm.addTransitions(ENTITY_CHARS, ATTR_ENTITY_NO_DELIM, null, function(c) {
         return this.entity += c;
       });
-      this.fsm.addTransitions(ENTITY_CHARS, ATTR_ENTITY_SINGLE_DELIM, function(c) {
+      this.fsm.addTransitions(ENTITY_CHARS, ATTR_ENTITY_SINGLE_DELIM, null, function(c) {
         return this.entity += c;
       });
       this.fsm.addTransitions(ENTITY_CHARS, ATTR_ENTITY_DOUBLE_DELIM, null, function(c) {
@@ -996,6 +1018,21 @@
       this.fsm.addTransition(';', ATTR_ENTITY_DOUBLE_DELIM, ATTR_VALUE_DOUBLE_DELIM, function() {
         this.attributeValue += "&" + this.entity + ";";
         return this.entity = '';
+      });
+      this.fsm.addTransitionAny(ATTR_ENTITY_NO_DELIM, ATTR_VALUE_NO_DELIM, function(c) {
+        this.attributeValue += '&' + this.entity;
+        this.entity = '';
+        return this._back();
+      });
+      this.fsm.addTransitionAny(ATTR_ENTITY_SINGLE_DELIM, ATTR_VALUE_SINGLE_DELIM, function(c) {
+        this.attributeValue += '&' + this.entity;
+        this.entity = '';
+        return this._back();
+      });
+      this.fsm.addTransitionAny(ATTR_ENTITY_DOUBLE_DELIM, ATTR_VALUE_DOUBLE_DELIM, function(c) {
+        this.attributeValue += '&' + this.entity;
+        this.entity = '';
+        return this._back();
       });
     }
 
@@ -1074,6 +1111,7 @@
         }
         this.head++;
       }
+      this.fsm.process('END');
       return this.string;
     };
 
